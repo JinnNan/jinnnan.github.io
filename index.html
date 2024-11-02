@@ -1,0 +1,163 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Showcase</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .no-items {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Our Product Showcase</h1>
+        <!-- Search Bar -->
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Search for products...">
+            <button id="search-button">Search</button>
+        </div>
+    </header>
+
+    <div class="product-gallery" id="product-gallery">
+        <!-- Static products (like the ones you already have) -->
+        <div class="product">
+            <img src="images/product1.jpg" alt="Product 1">
+            <h3>Wired Mouse</h3>
+            <p>Salpido M27 Wired USB High Definition Optical Mouse | 1000 DPI | LED Light | USB 2.0| Ergonomic Shape | Plug and Play | Configurable Left or Right Handed Users | 1 Year Warranty - (Black)</p>
+            <a href="https://amzn.to/40oK1Bu" target="_blank" class="buy-button">Buy on Amazon</a>
+        </div>
+
+        <div class="product">
+            <img src="images/product2.jpg" alt="Product 2">
+            <h3>Product Name 2</h3>
+            <p>ZEBRONICS K24 USB Keyboard with Long Life 8 Million Keystrokes, Silent & Comfortable Use, Slim Design, Retractable Stand, 1.3 Meter Textured Cable, Chiclet Keys and UV Coated Keycaps.</p>
+            <a href="https://amzn.to/40t42Xq" target="_blank" class="buy-button">Buy on Amazon</a>
+        </div>
+
+        <!-- Add more static products if necessary -->
+    </div>
+
+    <div id="search-results"></div>
+
+    <footer>
+        <p>© 2024 Your Website Name. All rights reserved. <br> This site contains affiliate links.</p>
+    </footer>
+
+    <script>
+        // Define the products data array
+        const products = [
+            { imgSrc: 'images/product1.jpg', name: 'Product Name 1', description: 'Amazing product description here.', link: 'https://amzn.to/example4' },
+            { imgSrc: 'images/product2.jpg', name: 'Product Name 2', description: 'Sage Square Hilarious 32cm Squeaking Screaming Chicken Toy for Kids, Silly Squeezing & Squawking Novelty Gift Idea – Vibrant Colors & Wacky Design', link: 'https://amzn.to/48wbhQp' },
+            { imgSrc: 'images/product3.jpg', name: 'Product Name 3', description: 'Another exciting product description here.', link: 'https://amzn.to/example5' },
+            { imgSrc: 'images/product4.jpg', name: 'Product Name 4', description: 'Amazing product description here.', link: 'https://amzn.to/example4' },
+            { imgSrc: 'images/product5.jpg', name: 'Product Name 5', description: 'Amazing product description here.', link: 'https://amzn.to/example5' },
+            { imgSrc: 'images/product6.jpg', name: 'Product Name 6', description: 'Amazing product description here.', link: 'https://amzn.to/example6' },
+            { imgSrc: 'images/product7.jpg', name: 'Product Name 7', description: 'Amazing product description here.', link: 'https://amzn.to/example7' },
+            { imgSrc: 'images/product8.jpg', name: 'Product Name 8', description: 'Amazing product description here.', link: 'https://amzn.to/example8' },
+            { imgSrc: 'images/product9.jpg', name: 'Product Name 9', description: 'Amazing product description here.', link: 'https://amzn.to/example9' },
+            { imgSrc: 'images/product10.jpg', name: 'Product Name 10', description: 'Amazing product description here.', link: 'https://amzn.to/example10' },
+            { imgSrc: 'images/product11.jpg', name: 'Product Name 11', description: 'Amazing product description here.', link: 'https://amzn.to/example11' },
+            { imgSrc: 'images/product12.jpg', name: 'Product Name 12', description: 'Amazing product description here.', link: 'https://amzn.to/example12' },
+            { imgSrc: 'images/product13.jpg', name: 'Product Name 13', description: 'Amazing product description here.', link: 'https://amzn.to/example13' },
+            { imgSrc: 'images/product14.jpg', name: 'Product Name 14', description: 'Amazing product description here.', link: 'https://amzn.to/example14' },
+            { imgSrc: 'images/product15.jpg', name: 'Product Name 15', description: 'Amazing product description here.', link: 'https://amzn.to/example15' },
+            { imgSrc: 'images/product16.jpg', name: 'Product Name 16', description: 'Amazing product description here.', link: 'https://amzn.to/example16' },
+            { imgSrc: 'images/product17.jpg', name: 'Product Name 17', description: 'Amazing product description here.', link: 'https://amzn.to/example17' },
+            { imgSrc: 'images/product18.jpg', name: 'Product Name 18', description: 'Amazing product description here.', link: 'https://amzn.to/example18' },
+            { imgSrc: 'images/product19.jpg', name: 'Product Name 19', description: 'Amazing product description here.', link: 'https://amzn.to/example19' },
+            { imgSrc: 'images/product20.jpg', name: 'Product Name 20', description: 'Amazing product description here.', link: 'https://amzn.to/example20' },
+            { imgSrc: 'images/product21.jpg', name: 'Product Name 21', description: 'Amazing product description here.', link: 'https://amzn.to/example21' },
+            { imgSrc: 'images/product22.jpg', name: 'Product Name 22', description: 'Amazing product description here.', link: 'https://amzn.to/example22' },
+            { imgSrc: 'images/product23.jpg', name: 'Product Name 23', description: 'Amazing product description here.', link: 'https://amzn.to/example23' },
+            { imgSrc: 'images/product24.jpg', name: 'Product Name 24', description: 'Amazing product description here.', link: 'https://amzn.to/example24' },
+            { imgSrc: 'images/product25.jpg', name: 'Product Name 25', description: 'Amazing product description here.', link: 'https://amzn.to/example25' },
+            { imgSrc: 'images/product26.jpg', name: 'Product Name 26', description: 'Amazing product description here.', link: 'https://amzn.to/example26' },
+            { imgSrc: 'images/product27.jpg', name: 'Product Name 27', description: 'Amazing product description here.', link: 'https://amzn.to/example27' },
+            { imgSrc: 'images/product28.jpg', name: 'Product Name 28', description: 'Amazing product description here.', link: 'https://amzn.to/example28' },
+            { imgSrc: 'images/product29.jpg', name: 'Product Name 29', description: 'Amazing product description here.', link: 'https://amzn.to/example29' },
+            { imgSrc: 'images/product30.jpg', name: 'Product Name 30', description: 'Amazing product description here.', link: 'https://amzn.to/example30' },
+            { imgSrc: 'images/product31.jpg', name: 'Product Name 31', description: 'Amazing product description here.', link: 'https://amzn.to/example31' },
+            { imgSrc: 'images/product32.jpg', name: 'Product Name 32', description: 'Amazing product description here.', link: 'https://amzn.to/example32' },
+            { imgSrc: 'images/product33.jpg', name: 'Product Name 33', description: 'Amazing product description here.', link: 'https://amzn.to/example33' },
+            { imgSrc: 'images/product34.jpg', name: 'Product Name 34', description: 'Amazing product description here.', link: 'https://amzn.to/example34' },
+            { imgSrc: 'images/product35.jpg', name: 'Product Name 35', description: 'Amazing product description here.', link: 'https://amzn.to/example35' },
+            { imgSrc: 'images/product36.jpg', name: 'Product Name 36', description: 'Amazing product description here.', link: 'https://amzn.to/example36' },
+            { imgSrc: 'images/product37.jpg', name: 'Product Name 37', description: 'Amazing product description here.', link: 'https://amzn.to/example37' },
+            { imgSrc: 'images/product38.jpg', name: 'Product Name 38', description: 'Amazing product description here.', link: 'https://amzn.to/example38' },
+            { imgSrc: 'images/product39.jpg', name: 'Product Name 39', description: 'Amazing product description here.', link: 'https://amzn.to/example39' },
+            { imgSrc: 'images/product40.jpg', name: 'Product Name 40', description: 'Amazing product description here.', link: 'https://amzn.to/example40' },
+            { imgSrc: 'images/product41.jpg', name: 'Product Name 41', description: 'Amazing product description here.', link: 'https://amzn.to/example41' },
+            { imgSrc: 'images/product42.jpg', name: 'Product Name 42', description: 'Amazing product description here.', link: 'https://amzn.to/example42' },
+            { imgSrc: 'images/product43.jpg', name: 'Product Name 43', description: 'Amazing product description here.', link: 'https://amzn.to/example43' },
+            { imgSrc: 'images/product44.jpg', name: 'Product Name 44', description: 'Amazing product description here.', link: 'https://amzn.to/example44' },
+            { imgSrc: 'images/product45.jpg', name: 'Product Name 45', description: 'Amazing product description here.', link: 'https://amzn.to/example45' },
+            { imgSrc: 'images/product46.jpg', name: 'Product Name 46', description: 'Amazing product description here.', link: 'https://amzn.to/example46' },
+            { imgSrc: 'images/product47.jpg', name: 'Product Name 47', description: 'Amazing product description here.', link: 'https://amzn.to/example47' },
+            { imgSrc: 'images/product48.jpg', name: 'Product Name 48', description: 'Amazing product description here.', link: 'https://amzn.to/example48' },
+            { imgSrc: 'images/product49.jpg', name: 'Product Name 49', description: 'Amazing product description here.', link: 'https://amzn.to/example49' },
+            { imgSrc: 'images/product50.jpg', name: 'Product Name 50', description: 'Amazing product description here.', link: 'https://amzn.to/example50' }
+            // ... other products
+        ];
+
+        // Select the product gallery div
+        const productGallery = document.getElementById('product-gallery');
+
+        // Display all products on initial load
+        displayProducts(products);
+
+        // Search functionality
+        document.getElementById('search-button').addEventListener('click', function() {
+            const query = document.getElementById('search-input').value.toLowerCase();
+            const filteredProducts = products.filter(product => 
+                product.name.toLowerCase().includes(query) || 
+                product.description.toLowerCase().includes(query)
+            );
+            displayProducts(filteredProducts);
+        });
+
+        function displayProducts(productsToDisplay) {
+            productGallery.innerHTML = ''; // Clear previous results
+            if (productsToDisplay.length > 0) {
+                productsToDisplay.forEach(product => {
+                    // Create a new product div
+                    const productDiv = document.createElement('div');
+                    productDiv.className = 'product';
+
+                    // Create the image element
+                    const img = document.createElement('img');
+                    img.src = product.imgSrc;
+                    img.alt = product.name;
+                    productDiv.appendChild(img);
+
+                    // Create the product name element
+                    const productName = document.createElement('h3');
+                    productName.textContent = product.name;
+                    productDiv.appendChild(productName);
+
+                    // Create the description paragraph
+                    const productDescription = document.createElement('p');
+                    productDescription.textContent = product.description;
+                    productDiv.appendChild(productDescription);
+
+                    // Create the buy link
+                    const buyLink = document.createElement('a');
+                    buyLink.href = product.link;
+                    buyLink.target = '_blank';
+                    buyLink.className = 'buy-button';
+                    buyLink.textContent = 'Buy on Amazon';
+                    productDiv.appendChild(buyLink);
+
+                    // Append the new productDiv to the product gallery
+                    productGallery.appendChild(productDiv);
+                });
+            } else {
+                productGallery.innerHTML = '<p class="no-items">No items found</p>';
+            }
+        }
+    </script>
+</body>
+</html>
